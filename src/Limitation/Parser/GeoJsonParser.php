@@ -40,8 +40,8 @@ class GeoJsonParser
     {
         $this->city = new City();
         $this->city
-            ->setName($this->geoJson->city)
-            ->setDescription($this->geoJson->description);
+            ->setName($this->geoJson->properties->name)
+            ->setDescription($this->geoJson->properties->description);
 
         return $this;
     }
@@ -56,7 +56,7 @@ class GeoJsonParser
             $limitation = new Limitation();
             $limitation
                 ->setTitle($feature->properties->name)
-                ->setDescription($feature->properties->popupContent);
+                ->setDescription($feature->properties->description);
 
             $this->city->addLimitation($limitation);
         }
