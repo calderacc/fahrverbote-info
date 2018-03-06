@@ -3,6 +3,7 @@
 namespace App\Limitation\Parser;
 
 use App\Limitation\Entity\City;
+use App\Limitation\Entity\Limitation;
 
 class GeoJsonParser
 {
@@ -49,6 +50,15 @@ class GeoJsonParser
     {
         if (!$this->city) {
             return $this;
+        }
+
+        foreach ($this->geoJson->features as $feature) {
+            $limitation = new Limitation();
+            $limitation
+                ->setTitle($feature->properties->name)
+                ->setDescription($feature->properties->popupContent);
+
+            $this->city->addLimitation($limitation);
         }
 
         return $this;

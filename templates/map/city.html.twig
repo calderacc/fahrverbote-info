@@ -39,6 +39,37 @@
             <div id="map" style="height: 50vh;"></div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-12">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>
+                        Fahrverbot
+                    </th>
+
+                    <th>
+                        Beschreibung
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for limitation in city.limitations %}
+                    <tr>
+                        <td>
+                            {{ limitation.title }}
+                        </td>
+
+                        <td>
+                            {{ limitation.description }}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

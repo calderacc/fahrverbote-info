@@ -10,6 +10,9 @@ class City
     /** @var string $desription */
     private $desription;
 
+    /** @var array $limitations */
+    private $limitations = [];
+
     public function getName(): ?string
     {
         return $this->name;
@@ -32,5 +35,17 @@ class City
         $this->desription = $description;
 
         return $this;
+    }
+
+    public function addLimitation(Limitation $limitation): City
+    {
+        $this->limitations[] = $limitation;
+
+        return $this;
+    }
+
+    public function getLimitations(): array
+    {
+        return $this->limitations;
     }
 }
