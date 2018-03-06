@@ -17,6 +17,10 @@ class MapController extends Controller
     {
         $geoJsonUrl = sprintf('https://raw.githubusercontent.com/maltehuebner/fahrverbote/master/%s.geojson', $citySlug);
 
+        if (false === @file($geoJsonUrl)) {
+            throw $this->createNotFoundException(sprintf('City %s not found', $citySlug));
+        }
+
         $parser->loadFromFile($geoJsonUrl)->parse();
 
         return $this->render('map/city.html.twig', [
