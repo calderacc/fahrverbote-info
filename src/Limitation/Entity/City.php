@@ -84,7 +84,7 @@ class City
 
     public function getDescription(): ?string
     {
-        return $this->slug;
+        return $this->desription;
     }
 
     public function setDescription(string $description): City
