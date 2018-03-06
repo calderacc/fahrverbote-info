@@ -9,6 +9,6 @@ class MapController extends Controller
 {
     public function index(): Response
     {
-        return new Response('Test');
+        return $this->render('map/index.html.twig');
     }
 }
