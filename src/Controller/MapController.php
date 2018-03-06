@@ -11,4 +11,13 @@ class MapController extends Controller
     {
         return $this->render('map/index.html.twig');
     }
+
+    public function city(string $citySlug): Response
+    {
+        $geoJsonUrl = sprintf('https://raw.githubusercontent.com/maltehuebner/fahrverbote/master/map.geojson');
+
+        return $this->render('map/city.html.twig', [
+            'geoJsonUrl' => $geoJsonUrl,
+        ]);
+    }
 }
