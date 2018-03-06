@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Limitation\Parser\GeoJsonParser;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -12,12 +13,15 @@ class MapController extends Controller
         return $this->render('map/index.html.twig');
     }
 
-    public function city(string $citySlug): Response
+    public function city(GeoJsonParser $parser, string $citySlug): Response
     {
-        $geoJsonUrl = sprintf('https://raw.githubusercontent.com/maltehuebner/fahrverbote/master/map.geojson');
+        $geoJsonUrl = sprintf('https://raw.githubusercontent.com/maltehuebner/fahrverbote/master/%s.geojson', $citySlug);
+
+        $parser->loadFromFile($geoJsonUrl)->parse();
 
         return $this->render('map/city.html.twig', [
             'geoJsonUrl' => $geoJsonUrl,
+            'city' => $parser->getCity(),
         ]);
     }
 }
