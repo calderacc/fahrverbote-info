@@ -10,7 +10,7 @@ class MapController extends Controller
 {
     public function index(): Response
     {
-        return $this->render('map/index.html.twig');
+        return $this->redirectToRoute('city', ['citySlug' => 'hamburg']);
     }
 
     public function city(GeoJsonParser $parser, string $citySlug): Response
