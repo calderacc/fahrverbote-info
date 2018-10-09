@@ -55,10 +55,7 @@
 
 {% block javascript %}
 <script>
-    var map = L.map('map', {
-        center: [53.5647462, 9.9545752],
-        zoom: 13
-    });
+    var map = L.map('map');
 
     L.tileLayer('https://tiles.caldera.cc/wikimedia-intl/{z}/{x}/{y}.png', {
         attribution: 'Wikimedia maps beta | Map data &copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
@@ -66,5 +63,9 @@
 
     var geojsonLayer = new L.GeoJSON.AJAX('{{ geoJsonUrl }}');
     geojsonLayer.addTo(map);
+    geojsonLayer.on('data:loaded', function() {
+        map.fitBounds(geojsonLayer.getBounds())
+    });
+
 </script>
 {% endblock javascript %}
