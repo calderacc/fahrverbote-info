@@ -10,7 +10,7 @@ class Limitation
     /** @var string $description */
     protected $description;
 
-    public function getTitle(): string
+    public function getTitle(): ?string
     {
         return $this->title;
     }
@@ -22,7 +22,7 @@ class Limitation
         return $this;
     }
 
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }

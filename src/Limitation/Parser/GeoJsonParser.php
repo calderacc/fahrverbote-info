@@ -39,9 +39,12 @@ class GeoJsonParser
     protected function createCity(): GeoJsonParser
     {
         $this->city = new City();
-        $this->city
-            ->setName($this->geoJson->properties->name)
-            ->setDescription($this->geoJson->properties->description);
+
+        if (isset($this->geoJson->properties)) {
+            $this->city
+                ->setName($this->geoJson->properties->name)
+                ->setDescription($this->geoJson->properties->description);
+        }
 
         return $this;
     }
@@ -54,9 +57,12 @@ class GeoJsonParser
 
         foreach ($this->geoJson->features as $feature) {
             $limitation = new Limitation();
-            $limitation
-                ->setTitle($feature->properties->name)
-                ->setDescription($feature->properties->description);
+
+            if (isset($feature->properties) && isset($feature->properties->name) && isset($feature->properties->description)) {
+                $limitation
+                    ->setTitle($feature->properties->name)
+                    ->setDescription($feature->properties->description);
+            }
 
             $this->city->addLimitation($limitation);
         }
