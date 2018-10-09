@@ -14,8 +14,16 @@
                     Städte
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ path('city', { citySlug: 'berlin' }) }}">
+                        Berlin
+                    </a>
+
                     <a class="dropdown-item" href="{{ path('city', { citySlug: 'hamburg' }) }}">
                         Hamburg
+                    </a>
+
+                    <a class="dropdown-item" href="{{ path('city', { citySlug: 'stuttgart' }) }}">
+                        Stuttgart
                     </a>
                 </div>
             </li>
