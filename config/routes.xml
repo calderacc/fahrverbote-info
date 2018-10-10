@@ -18,5 +18,5 @@
     </route>
 
     <route id="city" path="/{citySlug}" controller="App\Controller\MapController::city" />
-    <route id="frontpage" path="/" controller="App\Controller\MapController::index" />
+    <route id="frontpage" path="/" controller="App\Controller\FrontpageController::index" />
 </routes>

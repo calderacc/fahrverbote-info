@@ -1,0 +1,24 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card-deck">
+                {% for citySlug in cityList %}
+                <div class="card">
+                    <img class="card-img-top" src=".../100px200/" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="{{ path('city', { citySlug: citySlug }) }}" title="zur Übersicht der Fahrverbote in {{ citySlug|capitalize }}">
+                                {{ citySlug|capitalize }}
+                            </a>
+                        </h5>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

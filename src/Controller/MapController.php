@@ -8,11 +8,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class MapController extends Controller
 {
-    public function index(): Response
-    {
-        return $this->redirectToRoute('city', ['citySlug' => 'hamburg']);
-    }
-
     public function city(GeoJsonParser $parser, string $citySlug): Response
     {
         $geoJsonUrl = sprintf('https://raw.githubusercontent.com/maltehuebner/fahrverbote/master/%s.geojson', $citySlug);
