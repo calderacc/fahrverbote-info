@@ -18,7 +18,9 @@
                 </div>
 
                 <script>
-                    var map_{{ citySlug }} = L.map('map-{{ citySlug }}');
+                    var map_{{ citySlug }} = L.map('map-{{ citySlug }}', {
+                        zoomControl: false
+                    });
 
                     L.tileLayer('https://tiles.caldera.cc/wikimedia-intl/{z}/{x}/{y}.png', {
                         attribution: 'Wikimedia maps beta | Map data &copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
