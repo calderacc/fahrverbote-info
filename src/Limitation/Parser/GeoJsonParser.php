@@ -62,7 +62,8 @@ class GeoJsonParser implements GeoJsonParserInterface
             if (isset($feature->properties) && isset($feature->properties->name) && isset($feature->properties->description)) {
                 $limitation
                     ->setTitle($feature->properties->name)
-                    ->setDescription($feature->properties->description);
+                    ->setDescription($feature->properties->description)
+                    ->setGeoJson(json_encode($feature));
             }
 
             $this->city->addLimitation($limitation);
