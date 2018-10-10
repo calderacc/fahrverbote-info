@@ -13,6 +13,9 @@ class City
     /** @var array $limitations */
     private $limitations = [];
 
+    /** @var string $geoJson */
+    protected $geoJson;
+
     public function getName(): ?string
     {
         return $this->name;
@@ -47,5 +50,17 @@ class City
     public function getLimitations(): array
     {
         return $this->limitations;
+    }
+
+    public function getGeoJson(): string
+    {
+        return $this->geoJson;
+    }
+
+    public function setGeoJson(string $geoJson): City
+    {
+        $this->geoJson = $geoJson;
+
+        return $this;
     }
 }

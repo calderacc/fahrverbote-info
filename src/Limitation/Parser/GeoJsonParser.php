@@ -43,7 +43,8 @@ class GeoJsonParser implements GeoJsonParserInterface
         if (isset($this->geoJson->properties)) {
             $this->city
                 ->setName($this->geoJson->properties->name)
-                ->setDescription($this->geoJson->properties->description);
+                ->setDescription($this->geoJson->properties->description)
+                ->setGeoJson(json_encode($this->geoJson));
         }
 
         return $this;
