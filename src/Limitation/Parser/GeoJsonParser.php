@@ -5,7 +5,7 @@ namespace App\Limitation\Parser;
 use App\Limitation\Entity\City;
 use App\Limitation\Entity\Limitation;
 
-class GeoJsonParser
+class GeoJsonParser implements GeoJsonParserInterface
 {
     /** @var City $city */
     protected $city;
@@ -13,21 +13,21 @@ class GeoJsonParser
     /** @var string $geoJson */
     protected $geoJson;
 
-    public function loadFromFile(string $filename): GeoJsonParser
+    public function loadFromFile(string $filename): GeoJsonParserInterface
     {
         $this->geoJson = json_decode(file_get_contents($filename));
 
         return $this;
     }
 
-    public function loadFromString(string $content): GeoJsonParser
+    public function loadFromString(string $content): GeoJsonParserInterface
     {
         $this->geoJson = json_decode($content);
 
         return $this;
     }
 
-    public function parse(): GeoJsonParser
+    public function parse(): GeoJsonParserInterface
     {
         $this
             ->createCity()
@@ -36,7 +36,7 @@ class GeoJsonParser
         return $this;
     }
 
-    protected function createCity(): GeoJsonParser
+    protected function createCity(): GeoJsonParserInterface
     {
         $this->city = new City();
 

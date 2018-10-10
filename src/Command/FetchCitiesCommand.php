@@ -2,6 +2,7 @@
 
 namespace App\Command;
 
+use App\Limitation\Parser\GeoJsonParserInterface;
 use Psr\SimpleCache\CacheInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -12,14 +13,19 @@ class FetchCitiesCommand extends Command
     /** @var CacheInterface $cache */
     protected $cache;
 
-    public function __construct(?string $name = null, CacheInterface $cache)
+    /** @var GeoJsonParserInterface $geoJsonParser */
+    protected $geoJsonParser;
+
+    public function __construct(?string $name = null, CacheInterface $cache, GeoJsonParserInterface $geoJsonParser)
     {
         $this->cache = $cache;
+
+        $this->geoJsonParser = $geoJsonParser;
 
         parent::__construct($name);
     }
 
-    public function configure()
+    public function configure(): void
     {
         $this->setName('verbot:fetch-cities');
     }
@@ -33,8 +39,21 @@ class FetchCitiesCommand extends Command
         $cities = [];
 
         foreach ($files as $file) {
-            $cities[] = substr($file['name'], 0, -8);
+            $citySlug = substr($file['name'], 0, -8);
+
+            $content = $client->api('repo')->contents()->download('maltehuebner', 'fahrverbote', $file['name']);
+
+            $city = $this->geoJsonParser
+                ->loadFromString($content)
+                ->parse()
+                ->getCity();
+
+            $output->writeln(sprintf('Added city <comment>%s</comment>', $citySlug));
+
+            $cities[$citySlug] = $city;
         }
+
+        ksort($cities);
 
         $this->cache->set('cities', $cities);
     }
