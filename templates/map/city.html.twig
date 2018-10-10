@@ -61,7 +61,7 @@
         attribution: 'Wikimedia maps beta | Map data &copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
     }).addTo(map);
 
-    var geojsonLayer = new L.GeoJSON.AJAX('https://raw.githubusercontent.com/maltehuebner/fahrverbote/master/%s.geojson');
+    var geojsonLayer = new L.GeoJSON.AJAX('{{ geoJsonUrl }}');
     geojsonLayer.addTo(map);
     geojsonLayer.on('data:loaded', function() {
         map.fitBounds(geojsonLayer.getBounds())
