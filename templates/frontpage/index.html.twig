@@ -30,11 +30,9 @@
                         attribution: 'Wikimedia maps beta | Map data &copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
                     }).addTo(map_{{ citySlug }});
 
-                    var geojsonLayer_{{ citySlug }} = new L.GeoJSON.AJAX('https://raw.githubusercontent.com/maltehuebner/fahrverbote/master/{{ citySlug }}.geojson');
+                    var geojsonLayer_{{ citySlug }} = new L.geoJSON({{ city.geoJson|raw }});
                     geojsonLayer_{{ citySlug }}.addTo(map_{{ citySlug }});
-                    geojsonLayer_{{ citySlug }}.on('data:loaded', function() {
-                        map_{{ citySlug }}.fitBounds(geojsonLayer_{{ citySlug }}.getBounds())
-                    });
+                    map_{{ citySlug }}.fitBounds(geojsonLayer_{{ citySlug }}.getBounds());
                 </script>
                 {% endfor %}
             </div>

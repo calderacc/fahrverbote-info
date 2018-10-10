@@ -61,10 +61,8 @@
         attribution: 'Wikimedia maps beta | Map data &copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
     }).addTo(map);
 
-    var geojsonLayer = new L.GeoJSON.AJAX('{{ geoJsonUrl }}');
+    var geojsonLayer = new L.geoJSON({{ city.geoJson|raw }});
     geojsonLayer.addTo(map);
-    geojsonLayer.on('data:loaded', function() {
-        map.fitBounds(geojsonLayer.getBounds())
-    });
+    map.fitBounds(geojsonLayer.getBounds());
 </script>
 {% endblock javascript %}
