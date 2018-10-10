@@ -11,6 +11,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class FetchCitiesCommand extends Command
 {
+    protected const DEFAULT_VENDOR = 'maltehuebner';
+    protected const DEFAULT_REPOSITORY = 'fahrverbote';
+    protected const DEFAULT_BRANCH = 'master';
+
     /** @var CacheInterface $cache */
     protected $cache;
 
@@ -30,16 +34,20 @@ class FetchCitiesCommand extends Command
     {
         $this
             ->setName('verbot:fetch-cities')
-            ->addOption('branch', 'b', InputOption::VALUE_OPTIONAL);
+            ->addOption('vendor', null, InputOption::VALUE_OPTIONAL, 'Vendor', self::DEFAULT_VENDOR)
+            ->addOption('repository', null, InputOption::VALUE_OPTIONAL, 'Repository', self::DEFAULT_REPOSITORY)
+            ->addOption('branch', null, InputOption::VALUE_OPTIONAL, 'Branch', self::DEFAULT_BRANCH);
     }
 
     public function execute(InputInterface $input, OutputInterface $output): void
     {
         $client = new \Github\Client();
 
+        $vendor = $input->getOption('vendor');
+        $repository = $input->getOption('repository');
         $branch = $input->getOption('branch');
 
-        $files = $client->api('repo')->contents()->show('maltehuebner', 'fahrverbote', '.', $branch);
+        $files = $client->api('repo')->contents()->show($vendor, $repository, '.', $branch);
 
         $cities = [];
 
@@ -47,7 +55,7 @@ class FetchCitiesCommand extends Command
             $citySlug = substr($file['name'], 0, -8);
             $filename = $file['name'];
 
-            $content = $client->api('repo')->contents()->download('maltehuebner', 'fahrverbote', $filename, $branch);
+            $content = $client->api('repo')->contents()->download($vendor, $repository, $filename, $branch);
 
             $city = $this->geoJsonParser
                 ->loadFromString($content)
