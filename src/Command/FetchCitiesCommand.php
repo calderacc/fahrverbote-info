@@ -6,6 +6,7 @@ use App\Limitation\Parser\GeoJsonParserInterface;
 use Psr\SimpleCache\CacheInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class FetchCitiesCommand extends Command
@@ -27,21 +28,26 @@ class FetchCitiesCommand extends Command
 
     public function configure(): void
     {
-        $this->setName('verbot:fetch-cities');
+        $this
+            ->setName('verbot:fetch-cities')
+            ->addOption('branch', 'b', InputOption::VALUE_OPTIONAL);
     }
 
     public function execute(InputInterface $input, OutputInterface $output): void
     {
         $client = new \Github\Client();
 
-        $files = $client->api('repo')->contents()->show('maltehuebner', 'fahrverbote', '.');
+        $branch = $input->getOption('branch');
+
+        $files = $client->api('repo')->contents()->show('maltehuebner', 'fahrverbote', '.', $branch);
 
         $cities = [];
 
         foreach ($files as $file) {
             $citySlug = substr($file['name'], 0, -8);
+            $filename = $file['name'];
 
-            $content = $client->api('repo')->contents()->download('maltehuebner', 'fahrverbote', $file['name']);
+            $content = $client->api('repo')->contents()->download('maltehuebner', 'fahrverbote', $filename, $branch);
 
             $city = $this->geoJsonParser
                 ->loadFromString($content)
