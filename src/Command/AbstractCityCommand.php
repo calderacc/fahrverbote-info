@@ -44,7 +44,7 @@ abstract class AbstractCityCommand extends Command
         $table->addRow([
             strtolower($city->getName()),
             $city->getName(),
-            $city->getDescription(),
+            substr($city->getDescription(), 0, 80),
             count($city->getLimitations()),
         ]);
     }
