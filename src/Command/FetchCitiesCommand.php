@@ -5,6 +5,7 @@ namespace App\Command;
 use App\Limitation\Parser\GeoJsonParserInterface;
 use Psr\SimpleCache\CacheInterface;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -51,6 +52,14 @@ class FetchCitiesCommand extends Command
 
         $cities = [];
 
+        $table = new Table($output);
+        $table->setHeaders([
+            'citySlug',
+            'Name',
+            'Description',
+            'Limitations',
+        ]);
+
         foreach ($files as $file) {
             $citySlug = substr($file['name'], 0, -8);
             $filename = $file['name'];
@@ -65,10 +74,19 @@ class FetchCitiesCommand extends Command
             $output->writeln(sprintf('Added city <comment>%s</comment>', $citySlug));
 
             $cities[$citySlug] = $city;
+
+            $table->addRow([
+                strtolower($city->getName()),
+                $city->getName(),
+                $city->getDescription(),
+                count($city->getLimitations()),
+            ]);
         }
 
         ksort($cities);
 
         $this->cache->set('cities', $cities);
+
+        $table->render();
     }
 }
