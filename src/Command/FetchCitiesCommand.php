@@ -15,19 +15,14 @@ class FetchCitiesCommand extends AbstractCityCommand
     protected const DEFAULT_REPOSITORY = 'fahrverbote';
     protected const DEFAULT_BRANCH = 'master';
 
-    /** @var CacheInterface $cache */
-    protected $cache;
-
     /** @var GeoJsonParserInterface $geoJsonParser */
     protected $geoJsonParser;
 
     public function __construct(?string $name = null, CacheInterface $cache, GeoJsonParserInterface $geoJsonParser)
     {
-        $this->cache = $cache;
-
         $this->geoJsonParser = $geoJsonParser;
 
-        parent::__construct($name);
+        parent::__construct($name, $cache);
     }
 
     public function configure(): void
@@ -74,7 +69,7 @@ class FetchCitiesCommand extends AbstractCityCommand
 
         ksort($cities);
 
-        $this->cache->set('cities', $cities);
+        $this->storeCitiesInCache($cities);
 
         $table->render();
     }

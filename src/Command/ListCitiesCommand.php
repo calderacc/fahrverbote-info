@@ -10,16 +10,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class ListCitiesCommand extends AbstractCityCommand
 {
-    /** @var CacheInterface $cache */
-    protected $cache;
-
-    public function __construct(?string $name = null, CacheInterface $cache)
-    {
-        $this->cache = $cache;
-
-        parent::__construct($name);
-    }
-
     public function configure(): void
     {
         $this->setName('verbot:list-cities');
@@ -27,7 +17,7 @@ class ListCitiesCommand extends AbstractCityCommand
 
     public function execute(InputInterface $input, OutputInterface $output): void
     {
-        $cities = $this->cache->get('cities');
+        $cities = $this->getCitiesFromCache();
 
         if (!is_array($cities)) {
             return;
