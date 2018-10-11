@@ -6,6 +6,7 @@
         "knplabs/github-api": "^2.10",
         "php-http/guzzle6-adapter": "^1.1",
         "sensio/framework-extra-bundle": "^5.2",
+        "sonata-project/seo-bundle": "^2.6",
         "symfony/apache-pack": "^1.0",
         "symfony/console": "^4.0",
         "symfony/flex": "^1.0",

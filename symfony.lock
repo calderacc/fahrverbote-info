@@ -104,6 +104,12 @@
             "ref": "fb7e19da7f013d0d422fa9bce16f5c510e27609b"
         }
     },
+    "sonata-project/exporter": {
+        "version": "1.9.1"
+    },
+    "sonata-project/seo-bundle": {
+        "version": "2.6.1"
+    },
     "symfony/apache-pack": {
         "version": "1.0",
         "recipe": {
@@ -149,6 +155,9 @@
     "symfony/flex": {
         "version": "v1.0.48"
     },
+    "symfony/form": {
+        "version": "v4.1.6"
+    },
     "symfony/framework-bundle": {
         "version": "3.3",
         "recipe": {
@@ -163,6 +172,12 @@
     },
     "symfony/http-kernel": {
         "version": "v4.0.1"
+    },
+    "symfony/inflector": {
+        "version": "v4.1.6"
+    },
+    "symfony/intl": {
+        "version": "v4.1.6"
     },
     "symfony/lts": {
         "version": "4-dev"
@@ -182,8 +197,14 @@
     "symfony/polyfill-ctype": {
         "version": "v1.8.0"
     },
+    "symfony/polyfill-intl-icu": {
+        "version": "v1.9.0"
+    },
     "symfony/polyfill-mbstring": {
         "version": "v1.6.0"
+    },
+    "symfony/property-access": {
+        "version": "v4.1.6"
     },
     "symfony/routing": {
         "version": "3.3",
