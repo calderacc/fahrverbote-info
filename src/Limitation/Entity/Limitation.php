@@ -37,7 +37,7 @@ class Limitation
         return $this;
     }
 
-    public function getGeoJson(): string
+    public function getGeoJson(): ?string
     {
         return $this->geoJson;
     }

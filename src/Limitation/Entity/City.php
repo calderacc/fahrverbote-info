@@ -52,7 +52,7 @@ class City
         return $this->limitations;
     }
 
-    public function getGeoJson(): string
+    public function getGeoJson(): ?string
     {
         return $this->geoJson;
     }
