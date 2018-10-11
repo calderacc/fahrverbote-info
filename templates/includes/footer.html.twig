@@ -1,18 +1,13 @@
-<!-- Matomo -->
-<script type="text/javascript">
-    var _paq = _paq || [];
-    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-    _paq.push(["setCookieDomain", "*.fahrverbote.info"]);
-    _paq.push(["setDoNotTrack", true]);
-    _paq.push(['trackPageView']);
-    _paq.push(['enableLinkTracking']);
-    (function() {
-        var u="//piwik.caldera.cc/";
-        _paq.push(['setTrackerUrl', u+'piwik.php']);
-        _paq.push(['setSiteId', '19']);
-        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-    })();
-</script>
-<noscript><p><img src="//piwik.caldera.cc/piwik.php?idsite=19&amp;rec=1" style="border:0;" alt="" /></p></noscript>
-<!-- End Matomo Code -->
+<ul class="list-inline">
+    <li class="list-inline-item">
+        <a href="{{ path('impress') }}">
+            Impressum
+        </a>
+    </li>
+
+    <li class="list-inline-item">
+        <a href="{{ path('privacy') }}">
+            Datenschutz
+        </a>
+    </li>
+</ul>
