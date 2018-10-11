@@ -3,14 +3,12 @@
 namespace App\Command;
 
 use App\Limitation\Entity\City;
-use App\Limitation\Parser\GeoJsonParserInterface;
 use Psr\SimpleCache\CacheInterface;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class ListCitiesCommand extends Command
+class ListCitiesCommand extends AbstractCityCommand
 {
     /** @var CacheInterface $cache */
     protected $cache;
@@ -36,22 +34,11 @@ class ListCitiesCommand extends Command
         }
 
         $table = new Table($output);
-
-        $table->setHeaders([
-            'citySlug',
-            'Name',
-            'Description',
-            'Limitations',
-        ]);
+        $this->addDefaultCityHeader($table);
 
         /** @var City $city */
         foreach ($cities as $city) {
-            $table->addRow([
-                strtolower($city->getName()),
-                $city->getName(),
-                $city->getDescription(),
-                count($city->getLimitations()),
-            ]);
+            $this->addCityTableRow($table, $city);
         }
 
         $table->render();

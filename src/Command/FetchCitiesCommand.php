@@ -4,13 +4,12 @@ namespace App\Command;
 
 use App\Limitation\Parser\GeoJsonParserInterface;
 use Psr\SimpleCache\CacheInterface;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class FetchCitiesCommand extends Command
+class FetchCitiesCommand extends AbstractCityCommand
 {
     protected const DEFAULT_VENDOR = 'maltehuebner';
     protected const DEFAULT_REPOSITORY = 'fahrverbote';
@@ -53,12 +52,7 @@ class FetchCitiesCommand extends Command
         $cities = [];
 
         $table = new Table($output);
-        $table->setHeaders([
-            'citySlug',
-            'Name',
-            'Description',
-            'Limitations',
-        ]);
+        $this->addDefaultCityHeader($table);
 
         foreach ($files as $file) {
             $citySlug = substr($file['name'], 0, -8);
@@ -75,12 +69,7 @@ class FetchCitiesCommand extends Command
 
             $cities[$citySlug] = $city;
 
-            $table->addRow([
-                strtolower($city->getName()),
-                $city->getName(),
-                $city->getDescription(),
-                count($city->getLimitations()),
-            ]);
+            $this->addCityTableRow($table, $city);
         }
 
         ksort($cities);
