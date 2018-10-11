@@ -24,9 +24,19 @@
 {% block content %}
 {% endblock content %}
 
-{% include 'includes/ad.html.twig' %}
+<footer class="text-center">
+    <div class="row mt-2">
+        <div class="col-12">
+            {% include 'includes/ad.html.twig' %}
+        </div>
+    </div>
 
-{% include 'includes/footer.html.twig' %}
+    <div class="row mt-2">
+        <div class="col-12">
+            {% include 'includes/footer.html.twig' %}
+        </div>
+    </div>
+</footer>
 
 <script src="/js/jquery/jquery-3.3.1.min.js"></script>
 <script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
