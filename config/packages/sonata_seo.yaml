@@ -1,0 +1,30 @@
+sonata_seo:
+    encoding:         UTF-8
+    page:
+        title:            Fahrverbote in Deutschland wegen Feinstaub und Stickoxiden
+        default:          sonata.seo.page.default
+        metas:
+            name:
+                keywords:             Fahrverbote, Diesel, Feinstaub, Stickoxide, Luftreinheit
+                description:          Übersicht über Fahrverbote für Dieselfahrzeuge in Deutschland
+                robots:               index, follow
+                'twitter:site':       '@calderacc'
+                'twitter:creator':    '@maltehuebner'
+            property:
+                'fb:app_id':          '216780188685195'
+                'og:type':            Website
+                'og:title':           Fahrverbote in Deutschland wegen Feinstaub und Stickoxiden
+                'og:site_name':       fahrverbote.info
+                'og:description':     Übersicht über Fahrverbote für Dieselfahrzeuge in Deutschland
+                'og:locale':          de_DE
+
+            http-equiv:
+                'Content-Type':         text/html; charset=utf-8
+
+            charset:
+                UTF-8:    ''
+
+        head:
+            'xmlns':              http://www.w3.org/1999/xhtml
+            'xmlns:og':           http://opengraphprotocol.org/schema/
+            'xmlns:fb':           "http://www.facebook.com/2008/fbml"
