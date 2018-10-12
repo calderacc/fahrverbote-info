@@ -50,6 +50,12 @@ class FetchCitiesCommand extends AbstractCityCommand
         $this->addDefaultCityHeader($table);
 
         foreach ($files as $file) {
+            if (strpos($file['name'], '.geojson') !== strlen($file['name']) - 8) {
+                $output->writeln(sprintf('Skipping <comment>%s</comment> as it is not a geojson file', $file['name']));
+
+                continue;
+            }
+
             $citySlug = substr($file['name'], 0, -8);
             $filename = $file['name'];
 
@@ -59,7 +65,7 @@ class FetchCitiesCommand extends AbstractCityCommand
                 ->loadFromString($content)
                 ->parse()
                 ->getCity();
-            
+
             $cities[$citySlug] = $city;
 
             $this->addCityTableRow($table, $city);
