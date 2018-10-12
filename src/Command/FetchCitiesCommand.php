@@ -59,9 +59,7 @@ class FetchCitiesCommand extends AbstractCityCommand
                 ->loadFromString($content)
                 ->parse()
                 ->getCity();
-
-            $output->writeln(sprintf('Added city <comment>%s</comment>', $citySlug));
-
+            
             $cities[$citySlug] = $city;
 
             $this->addCityTableRow($table, $city);
