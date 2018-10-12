@@ -45,5 +45,25 @@
 
 {% block javascript %}
 {% endblock javascript %}
+
+<script>
+    $('.map').each(function() {
+        let slug = $(this).data('cityslug');
+
+        let mapIdentifier = $(this).prop('id');
+
+        let map = L.map(mapIdentifier, {
+            zoomControl: false
+        });
+
+        L.tileLayer('https://tiles.caldera.cc/wikimedia-intl/{z}/{x}/{y}.png', {
+            attribution: 'Wikimedia maps beta | Map data &copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+        }).addTo(map);
+
+        let geojsonLayer = new L.geoJSON($(this).data('geojson'));
+        geojsonLayer.addTo(map);
+        map.fitBounds(geojsonLayer.getBounds());
+    });
+</script>
 </body>
 </html>

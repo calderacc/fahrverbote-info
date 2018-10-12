@@ -7,7 +7,7 @@
             <div class="card-deck">
                 {% for citySlug, city in cityList %}
                 <div class="card">
-                    <div id="map-{{ citySlug }}" class="card-img-top" style="height: 250px;"></div>
+                    <div data-cityslug="{{ citySlug }}" id="map-{{ citySlug }}" data-geojson="{{ city.geoJson }}" class="card-img-top map" style="height: 250px;"></div>
                     <div class="card-body">
                         <h5 class="card-title">
                             <a href="{{ path('city', { citySlug: citySlug }) }}" title="zur Übersicht der Fahrverbote in {{ citySlug|capitalize }}">
@@ -22,17 +22,7 @@
                 </div>
 
                 <script>
-                    var map_{{ citySlug }} = L.map('map-{{ citySlug }}', {
-                        zoomControl: false
-                    });
 
-                    L.tileLayer('https://tiles.caldera.cc/wikimedia-intl/{z}/{x}/{y}.png', {
-                        attribution: 'Wikimedia maps beta | Map data &copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
-                    }).addTo(map_{{ citySlug }});
-
-                    var geojsonLayer_{{ citySlug }} = new L.geoJSON({{ city.geoJson|raw }});
-                    geojsonLayer_{{ citySlug }}.addTo(map_{{ citySlug }});
-                    map_{{ citySlug }}.fitBounds(geojsonLayer_{{ citySlug }}.getBounds());
                 </script>
                 {% endfor %}
             </div>
