@@ -16,5 +16,16 @@
   "bugs": {
     "url": "https://github.com/calderacc/fahrverbot/issues"
   },
-  "homepage": "https://github.com/calderacc/fahrverbot"
+  "homepage": "https://github.com/calderacc/fahrverbot",
+  "dependencies": {
+    "leaflet": "^1.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.0.4",
+    "gulp-concat": "^2.6.0",
+    "gulp-minify": "^0.0.7",
+    "gulp-strip-comments": "^2.4.2",
+    "gulp-util": "^3.0.7"
+  }
 }
