@@ -1,0 +1,68 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h2>
+                Fahrverbote in {{ city.name }}
+            </h2>
+
+            <p class="lead">
+                {{ city.description }}
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div id="map" style="height: 50vh;"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>
+                        Fahrverbot
+                    </th>
+
+                    <th>
+                        Beschreibung
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for limitation in city.limitations %}
+                    <tr>
+                        <td>
+                            {{ limitation.title }}
+                        </td>
+
+                        <td>
+                            {{ limitation.description }}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block javascript %}
+<script>
+    var map = L.map('map');
+
+    L.tileLayer('https://tiles.caldera.cc/wikimedia-intl/{z}/{x}/{y}.png', {
+        attribution: 'Wikimedia maps beta | Map data &copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+    }).addTo(map);
+
+    var geojsonLayer = new L.geoJSON({{ city.geoJson|raw }});
+    geojsonLayer.addTo(map);
+    map.fitBounds(geojsonLayer.getBounds());
+</script>
+{% endblock javascript %}

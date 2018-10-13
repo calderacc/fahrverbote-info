@@ -1,0 +1,32 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card-deck">
+                {% for citySlug, city in cityList %}
+                <div class="card">
+                    <div data-cityslug="{{ citySlug }}" id="map-{{ citySlug }}" data-geojson="{{ city.geoJson }}" class="card-img-top map" style="height: 250px;"></div>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="{{ path('city', { citySlug: citySlug }) }}" title="zur Übersicht der Fahrverbote in {{ citySlug|capitalize }}">
+                                {{ citySlug|capitalize }}
+                            </a>
+                        </h5>
+
+                        <p class="card-text">
+                            {{ city.description }}
+                        </p>
+                    </div>
+                </div>
+
+                <script>
+
+                </script>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
