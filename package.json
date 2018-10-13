@@ -1,0 +1,20 @@
+{
+  "name": "fahrverbot",
+  "version": "1.0.0",
+  "description": "Diese kleine Symfony-4-Anwendung stellt eine grobe Übersicht über Fahrverbotsbereiche für Dieselfahrzeuge in deutschen Großstädten bereit.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/calderacc/fahrverbot"
+  },
+  "keywords": [],
+  "author": "Malte Hübner <maltehuebner@gmx.org>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/calderacc/fahrverbot/issues"
+  },
+  "homepage": "https://github.com/calderacc/fahrverbot"
+}
