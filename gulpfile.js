@@ -1,8 +1,8 @@
-var gulp = require('gulp');
-var minify = require('gulp-minify');
-var strip = require('gulp-strip-comments');
-var cleanCSS = require('gulp-clean-css');
-var concat = require('gulp-concat');
+let gulp = require('gulp');
+let minify = require('gulp-minify');
+let strip = require('gulp-strip-comments');
+let cleanCSS = require('gulp-clean-css');
+let concat = require('gulp-concat');
 
 gulp.task('copy-images', function () {
     return gulp.src('node_modules/leaflet/dist/images/*')
