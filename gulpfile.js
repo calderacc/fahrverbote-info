@@ -1,6 +1,7 @@
 let gulp = require('gulp');
 let minify = require('gulp-minify');
 let cleanCSS = require('gulp-clean-css');
+let concat = require('gulp-concat');
 
 gulp.task('copy-images', function () {
     return gulp.src('node_modules/leaflet/dist/images/*')
