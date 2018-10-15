@@ -25,8 +25,8 @@ gulp.task('compress-js', function () {
             'node_modules/popper.js/dist/popper.js',
             'node_modules/bootstrap/dist/js/bootstrap.min.js',
             'node_modules/leaflet/dist/leaflet.js',
-    ])
-        //.pipe(minify())
+        ])
+        .pipe(minify())
         //.pipe(concat('fahrverbot.min.js'))
         .pipe(gulp.dest('public/js/'));
 });
