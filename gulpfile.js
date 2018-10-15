@@ -16,7 +16,7 @@ gulp.task('compress-css', function () {
         ])
         .pipe(cleanCSS())
         .pipe(concat('fahrverbot.min.css'))
-        .pipe(gulp.dest('public/css/'))
+        .pipe(gulp.dest('public/css/'));
 });
 
 gulp.task('compress-js', function () {
@@ -27,7 +27,7 @@ gulp.task('compress-js', function () {
             'node_modules/leaflet/dist/leaflet.js',
         ])
         .pipe(minify())
-        //.pipe(concat('fahrverbot.min.js'))
+        .pipe(concat('fahrverbot.min.js'))
         .pipe(gulp.dest('public/js/'));
 });
 
