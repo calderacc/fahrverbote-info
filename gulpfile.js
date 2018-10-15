@@ -1,8 +1,6 @@
 let gulp = require('gulp');
 let minify = require('gulp-minify');
-let strip = require('gulp-strip-comments');
 let cleanCSS = require('gulp-clean-css');
-let concat = require('gulp-concat');
 
 gulp.task('copy-images', function () {
     return gulp.src('node_modules/leaflet/dist/images/*')
@@ -27,7 +25,6 @@ gulp.task('compress-js', function () {
             'node_modules/leaflet/dist/leaflet.js',
         ])
         .pipe(minify())
-        .pipe(concat('fahrverbot.min.js'))
         .pipe(gulp.dest('public/js/'));
 });
 
