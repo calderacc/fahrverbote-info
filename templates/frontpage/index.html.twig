@@ -4,14 +4,14 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <div class="card-deck">
+            <div class="card-columns">
                 {% for citySlug, city in cityList %}
                 <div class="card">
                     <div data-cityslug="{{ citySlug }}" id="map-{{ citySlug }}" data-geojson="{{ city.geoJson }}" class="card-img-top map" style="height: 250px;"></div>
                     <div class="card-body">
                         <h5 class="card-title">
-                            <a href="{{ path('city', { citySlug: citySlug }) }}" title="zur Übersicht der Fahrverbote in {{ citySlug|capitalize }}">
-                                {{ citySlug|capitalize }}
+                            <a href="{{ path('city', { citySlug: citySlug }) }}" title="zur Übersicht der Fahrverbote in {{ city.name }}">
+                                {{ city.name }}
                             </a>
                         </h5>
 
@@ -20,10 +20,6 @@
                         </p>
                     </div>
                 </div>
-
-                <script>
-
-                </script>
                 {% endfor %}
             </div>
         </div>
