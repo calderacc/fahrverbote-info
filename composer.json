@@ -14,7 +14,9 @@
         "symfony/lts": "^4@dev",
         "symfony/maker-bundle": "^1.1",
         "symfony/twig-bundle": "^4.0",
-        "symfony/yaml": "^4.0"
+        "symfony/yaml": "^4.0",
+        "zendframework/zend-feed": "^2.11",
+        "zendframework/zend-http": "^2.9"
     },
     "require-dev": {
         "symfony/dotenv": "^4.0"

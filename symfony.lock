@@ -2,6 +2,9 @@
     "clue/stream-filter": {
         "version": "v1.4.0"
     },
+    "container-interop/container-interop": {
+        "version": "1.2.0"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -95,6 +98,9 @@
     "psr/simple-cache": {
         "version": "1.0.0"
     },
+    "ralouphie/getallheaders": {
+        "version": "2.0.5"
+    },
     "sensio/framework-extra-bundle": {
         "version": "5.2",
         "recipe": {
@@ -133,6 +139,9 @@
             "version": "3.3",
             "ref": "9f94d3ea453cd8a3b95db7f82592d7344fe3a76a"
         }
+    },
+    "symfony/contracts": {
+        "version": "v1.0.2"
     },
     "symfony/debug": {
         "version": "v4.0.1"
@@ -227,10 +236,34 @@
             "ref": "f75ac166398e107796ca94cc57fa1edaa06ec47f"
         }
     },
+    "symfony/var-exporter": {
+        "version": "v4.2.2"
+    },
     "symfony/yaml": {
         "version": "v4.0.1"
     },
     "twig/twig": {
         "version": "v2.4.6"
+    },
+    "zendframework/zend-escaper": {
+        "version": "2.6.0"
+    },
+    "zendframework/zend-feed": {
+        "version": "2.11.0"
+    },
+    "zendframework/zend-http": {
+        "version": "2.9.1"
+    },
+    "zendframework/zend-loader": {
+        "version": "2.6.0"
+    },
+    "zendframework/zend-stdlib": {
+        "version": "3.2.1"
+    },
+    "zendframework/zend-uri": {
+        "version": "2.6.1"
+    },
+    "zendframework/zend-validator": {
+        "version": "2.11.1"
     }
 }
