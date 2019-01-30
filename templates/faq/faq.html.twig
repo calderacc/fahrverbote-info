@@ -1,0 +1,41 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h2>
+                Häufig gestellte Fragen
+            </h2>
+        </div>
+    </div>
+
+    {% for entry in entryList %}
+        <div class="row mt-3">
+            <div class="col-12">
+                <h4>
+                    {{ entry.title }}
+                </h4>
+
+                {{ entry.text|raw }}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

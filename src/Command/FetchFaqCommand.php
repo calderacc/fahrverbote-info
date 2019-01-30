@@ -3,21 +3,25 @@
 namespace App\Command;
 
 use App\Faq\Entity\Entry;
-use App\Limitation\Parser\GeoJsonParserInterface;
 use Psr\SimpleCache\CacheInterface;
-use Symfony\Component\BrowserKit\Client;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Zend\Feed\Reader\Entry\Rss;
 
-class FetchFaqCommand extends AbstractCityCommand
+class FetchFaqCommand extends Command
 {
     protected const RSS_FEED_URL = 'https://radverkehrsforum.de/lexicon/lexicon-feed/';
     protected const CATEGORY_LABEL = 'Luftschadstoffe und Grenzwerte';
 
-    public function __construct(?string $name = null, CacheInterface $cache, GeoJsonParserInterface $geoJsonParser)
+    /** @var CacheInterface $cache */
+    protected $cache;
+
+    public function __construct(?string $name = null, CacheInterface $cache)
     {
-        parent::__construct($name, $cache);
+        $this->cache = $cache;
+
+        parent::__construct($name);
     }
 
     public function configure(): void
@@ -29,6 +33,8 @@ class FetchFaqCommand extends AbstractCityCommand
     {
         $channel = \Zend\Feed\Reader\Reader::import(self::RSS_FEED_URL);
 
+        $entryList = [];
+
         /** @var Rss $item */
         foreach ($channel as $item) {
             if ($this->checkCategory($item)) {
@@ -38,9 +44,11 @@ class FetchFaqCommand extends AbstractCityCommand
                     ->setDesription($item->getDescription())
                     ->setText($item->getContent());
 
-                var_dump($entry);
+                array_unshift($entryList, $entry);
             }
         }
+
+        $this->cache->set('faq', $entryList);
     }
 
     protected function checkCategory(Rss $item): bool
